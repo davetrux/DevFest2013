@@ -27,13 +27,19 @@
             android:text="Long"
             android:id="@+id/longButton" android:layout_toRightOf="@+id/uiTestText" android:layout_alignParentTop="true"
             android:layout_marginTop="135dp" android:minWidth="100dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Async"
+            android:id="@+id/asyncButton" android:minWidth="100dp" android:layout_marginTop="200dp"
+            android:layout_alignParentTop="true" android:layout_toRightOf="@+id/uiTestText"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/resultText"
             android:textSize="30dp" android:gravity="center_horizontal"
             android:textColor="#ff0000" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="230dp"/>
+            android:layout_marginTop="260dp"/>
 </RelativeLayout>
 
 

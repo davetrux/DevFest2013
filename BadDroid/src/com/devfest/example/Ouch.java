@@ -15,6 +15,8 @@ public class Ouch extends Activity {
     private Button _uiButton;
     private Button _longButton;
     private Button _blockButton;
+    private Button _asyncButton;
+
     private TextView _uiText;
     private TextView _resultText;
 
@@ -54,6 +56,18 @@ public class Ouch extends Activity {
             @Override
             public void onClick(View view) {
                 callService("http://devfestdetroit.appspot.com/api/long");
+            }
+        });
+
+        _asyncButton = (Button) findViewById(R.id.asyncButton);
+        _asyncButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                _resultText.setText("");
+                AsyncWeb async = new AsyncWeb(_resultText);
+                async.execute("http://devfestdetroit.appspot.com/api/name");
+
             }
         });
     }
