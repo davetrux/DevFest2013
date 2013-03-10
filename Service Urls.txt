@@ -1,0 +1,17 @@
+Hello
+http://devfestdetroit.appspot.com/api/hello
+
+Single Random Name - Json
+http://devfestdetroit.appspot.com/api/name
+
+Single Random Name - XLML
+http://devfestdetroit.appspot.com/api/xname
+
+Long Running Single Random Name - Json
+http://devfestdetroit.appspot.com/api/long
+
+Single Random Name Specific Gender (m or f) - Json
+http://devfestdetroit.appspot.com/api/name/{gender}
+
+List of Random Names (up to 100) - Json
+http://devfestdetroit.appspot.com/api/names/{count}
