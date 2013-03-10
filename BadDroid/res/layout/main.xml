@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Two"
+            android:id="@+id/uiTestText" android:layout_gravity="center_horizontal|top" android:minWidth="150dp"
+            android:layout_marginLeft="10dp" android:layout_marginTop="20dp" android:textSize="30dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_button"
+            android:id="@+id/testButton" android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="15dp" android:layout_toRightOf="@+id/uiTestText" android:minWidth="100dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Block"
+            android:id="@+id/blockButton" android:layout_toRightOf="@+id/uiTestText" android:layout_alignParentTop="true"
+            android:layout_marginTop="75dp" android:minWidth="100dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Long"
+            android:id="@+id/longButton" android:layout_toRightOf="@+id/uiTestText" android:layout_alignParentTop="true"
+            android:layout_marginTop="135dp" android:minWidth="100dp"/>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/resultText"
+            android:textSize="30dp" android:gravity="center_horizontal"
+            android:textColor="#ff0000" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="230dp"/>
+</RelativeLayout>
+
+
