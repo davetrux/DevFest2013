@@ -4,9 +4,6 @@ http://devfestdetroit.appspot.com/api/hello
 Single Random Name - Json
 http://devfestdetroit.appspot.com/api/name
 
-Single Random Name - XLML
-http://devfestdetroit.appspot.com/api/xname
-
 Long Running Single Random Name - Json
 http://devfestdetroit.appspot.com/api/long
 
