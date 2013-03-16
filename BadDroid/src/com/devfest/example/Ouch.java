@@ -1,19 +1,18 @@
 package com.devfest.example;
 
+import android.os.NetworkOnMainThreadException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.gson.Gson;
-import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
 
 public class Ouch extends Activity {
 
     private Button _uiButton;
-    private Button _longButton;
     private Button _blockButton;
     private Button _asyncButton;
 
@@ -34,7 +33,8 @@ public class Ouch extends Activity {
         _uiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(_uiText.getText() == "Two") {
+                CharSequence temp = _uiText.getText();
+                if("Two".equalsIgnoreCase(_uiText.getText().toString())) {
                     _uiText.setText("One");
                 } else {
                     _uiText.setText("Two");
@@ -47,15 +47,6 @@ public class Ouch extends Activity {
             @Override
             public void onClick(View view) {
                 callService("http://devfestdetroit.appspot.com/api/name");
-            }
-        });
-
-        _longButton = (Button) findViewById(R.id.longButton);
-        _longButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                callService("http://devfestdetroit.appspot.com/api/long");
             }
         });
 
