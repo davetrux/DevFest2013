@@ -1,4 +1,4 @@
-package com.devfest.serviceconsumer.service;
+package com.devfest.serviceconsumer;
 
 
 import android.app.Activity;

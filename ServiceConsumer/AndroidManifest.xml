@@ -16,6 +16,6 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.RestService"></service>
+        <service android:name=".RestService"></service>
     </application>
 </manifest> 

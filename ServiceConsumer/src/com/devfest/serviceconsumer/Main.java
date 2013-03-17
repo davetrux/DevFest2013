@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.devfest.serviceconsumer.service.RestService;
-import com.devfest.serviceconsumer.task.AsyncWorker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -98,8 +96,8 @@ public class Main extends Activity {
         mAsyncButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AsyncWorker async = new AsyncWorker(mPersonList);
-                async.execute("http://devfestdetroit.appspot.com/api/name");
+
+
             }
         });
 
