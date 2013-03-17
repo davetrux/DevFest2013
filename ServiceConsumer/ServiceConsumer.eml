@@ -3,10 +3,10 @@
 	<output-test url="file://$MODULE_DIR$/out/test/ServiceConsumer"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
-	<lib name="$MODULE_DIR$/libs/commons-io-2.3.jar" scope="COMPILE">
+	<lib name="commons-io-2.3.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/commons-io-2.3.jar!/"/>
 	</lib>
-	<lib name="$MODULE_DIR$/libs/gson-2.2.2.jar" scope="COMPILE">
+	<lib name="gson-2.2.2.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/gson-2.2.2.jar!/"/>
 	</lib>
 </component>

@@ -2,8 +2,8 @@ package com.devfest.serviceconsumer;
 
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.commons.io.IOUtils;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class WebHelper {
-    HttpClient _client = new DefaultHttpClient();
+    AbstractHttpClient _client = new DefaultHttpClient();
 
     public String getHttp(String url) throws IOException {
 
