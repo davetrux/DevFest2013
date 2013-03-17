@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import com.devfest.serviceconsumer.WebHelper;
 
 import java.io.IOException;
 
@@ -28,7 +27,7 @@ public class RestService extends IntentService {
 
         String people = getJson(url);
 
-        if(people != "") {
+        if(!people.equalsIgnoreCase("")) {
             result = Activity.RESULT_OK;
         }
 
