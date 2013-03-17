@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class Main extends Activity {
 
-    private Button _serviceButton;
-    private Button _asyncButton;
-    private ListView _personList;
+    private Button mServiceButton;
+    private Button mAsyncButton;
+    private ListView mPersonList;
     private ArrayList<Person> _data;
 
     @Override
@@ -48,7 +48,7 @@ public class Main extends Activity {
 
     private void BindPersonList() {
         PersonAdapter adapter = new PersonAdapter(Main.this, _data);
-        _personList.setAdapter(adapter);
+        mPersonList.setAdapter(adapter);
     }
 
     private BroadcastReceiver onNotice = new BroadcastReceiver() {
@@ -77,17 +77,17 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        _asyncButton = (Button) findViewById(R.id.callAsync);
+        mAsyncButton = (Button) findViewById(R.id.callAsync);
 
-        _serviceButton = (Button) findViewById(R.id.callService);
+        mServiceButton = (Button) findViewById(R.id.callService);
 
-        _personList = (ListView) findViewById(R.id.personList);
+        mPersonList = (ListView) findViewById(R.id.personList);
 
-        _serviceButton.setOnClickListener(new View.OnClickListener() {
+        mServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (_personList.getCount() > 0) {
-                    _personList.setAdapter(null);
+                if (mPersonList.getCount() > 0) {
+                    mPersonList.setAdapter(null);
                 }
                 Intent intent = new Intent(Main.this, RestService.class);
                 intent.setData(Uri.parse("http://devfestdetroit.appspot.com/api/names/10"));
@@ -95,10 +95,10 @@ public class Main extends Activity {
             }
         });
 
-        _asyncButton.setOnClickListener(new View.OnClickListener() {
+        mAsyncButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AsyncWorker async = new AsyncWorker(_personList);
+                AsyncWorker async = new AsyncWorker(mPersonList);
                 async.execute("http://devfestdetroit.appspot.com/api/name");
             }
         });

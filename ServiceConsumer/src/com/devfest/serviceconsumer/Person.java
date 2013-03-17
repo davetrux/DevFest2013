@@ -5,42 +5,42 @@ import android.os.Parcelable;
 
 public class Person implements Parcelable {
 
-    private String firstName;
-    private String lastName;
-    private String gender;
+    private String mFirstName;
+    private String mLastName;
+    private String mGender;
 
     public Person() {
 
     }
 
     public Person(Parcel item) {
-        firstName = item.readString();
-        lastName = item.readString();
-        gender = item.readString();
+        mFirstName = item.readString();
+        mLastName = item.readString();
+        mGender = item.readString();
     }
 
     public String getFirstName() {
-        return firstName;
+        return mFirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.mFirstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.mLastName = lastName;
     }
 
     public String getGender() {
-        return gender;
+        return mGender;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.mGender = gender;
     }
 
     public static final Parcelable.Creator<Person> CREATOR
@@ -61,8 +61,8 @@ public class Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(firstName);
-        parcel.writeString(lastName);
-        parcel.writeString(gender);
+        parcel.writeString(mFirstName);
+        parcel.writeString(mLastName);
+        parcel.writeString(mGender);
     }
 }

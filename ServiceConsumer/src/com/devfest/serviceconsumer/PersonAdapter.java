@@ -11,12 +11,12 @@ import android.widget.TextView;
 import java.util.List;
 
 public class PersonAdapter extends ArrayAdapter<Person> {
-    private final Context context;
+    private final Context mContext;
     private final List<Person> values;
 
     public PersonAdapter(Context context, List<Person> values) {
         super(context, R.layout.rowlayout, values);
-        this.context = context;
+        this.mContext = context;
         this.values = values;
     }
 
@@ -28,7 +28,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.name);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);

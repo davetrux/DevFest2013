@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class WebHelper {
-    AbstractHttpClient _client = new DefaultHttpClient();
+    AbstractHttpClient mClient = new DefaultHttpClient();
 
     public String getHttp(String url) throws IOException {
 
         HttpGet request = new HttpGet(url);
 
-        HttpResponse response = _client.execute(request);
+        HttpResponse response = mClient.execute(request);
 
         InputStream stream = response.getEntity().getContent();
      	byte byteArray[] = IOUtils.toByteArray(stream);
