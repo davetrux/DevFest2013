@@ -12,16 +12,21 @@ import java.util.List;
 
 public class PersonAdapter extends ArrayAdapter<Person> {
     private final Context context;
-      private final List<Person> values;
+    private final List<Person> values;
 
-      public PersonAdapter(Context context, List<Person> values) {
+    public PersonAdapter(Context context, List<Person> values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
-      }
+    }
 
     @Override
-      public View getView(int position, View convertView, ViewGroup parent) {
+    public int getCount() {
+        return values.size();
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
@@ -33,11 +38,11 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         textView.setText(s.getFirstName() + " " + s.getLastName());
 
         if (s.getGender().equalsIgnoreCase("m")) {
-          imageView.setImageResource(R.drawable.male_icon);
+            imageView.setImageResource(R.drawable.male_icon);
         } else {
-          imageView.setImageResource(R.drawable.female_icon);
+            imageView.setImageResource(R.drawable.female_icon);
         }
 
         return rowView;
-      }
+    }
 }

@@ -9,4 +9,7 @@
 	<lib name="gson-2.2.2.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/gson-2.2.2.jar!/"/>
 	</lib>
+	<lib name="$MODULE_DIR$/libs/android-support-v4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/"/>
+	</lib>
 </component>

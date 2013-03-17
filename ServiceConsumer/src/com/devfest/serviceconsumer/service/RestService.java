@@ -5,19 +5,15 @@ import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Message;
-import android.os.Messenger;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import com.devfest.serviceconsumer.Person;
 import com.devfest.serviceconsumer.WebHelper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.List;
 
 public class RestService extends IntentService {
+
+    public static final String ACTION="REST-PERSONS";
 
     public RestService() {
         super("RestService");
@@ -30,47 +26,36 @@ public class RestService extends IntentService {
         Uri data = intent.getData();
         String url = data.getScheme() + "://" + data.getHost() + data.getPath();
 
-        List<Person> people = getFromService(url);
+        String people = getJson(url);
 
-        if(people != null) {
+        if(people != "") {
             result = Activity.RESULT_OK;
         }
 
-        completeCall(intent.getExtras(), result, people);
-
+        sendResult(result, people);
     }
 
-    private void completeCall(Bundle extras, int result, List<Person> people) {
-        if (extras != null) {
-            Messenger messenger = (Messenger) extras.get("messenger");
-            Message msg = Message.obtain();
-            msg.arg1 = result;
-            msg.obj = people;
-            try {
-                messenger.send(msg);
-            } catch (android.os.RemoteException e1) {
-                Log.w(getClass().getName(), "Exception sending message", e1);
-            }
-        }
+    private void sendResult(int result, String personJson) {
+
+        Intent sendBack = new Intent(ACTION);
+
+        sendBack.putExtra("result", result);
+        sendBack.putExtra("personlist", personJson);
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(sendBack);
     }
 
-    private List<Person> getFromService(String url) {
-        List<Person> result;
-
+    private String getJson(String url) {
         WebHelper http = new WebHelper();
-        String webResult;
-        try {
-            webResult = http.getHttp(url);
+           String webResult;
+           try {
+               webResult = http.getHttp(url);
 
-            Gson parser = new Gson();
+           } catch (IOException e) {
+               webResult = "";
+               Log.d(getClass().getName(), "Exception calling service", e);
+           }
 
-            result = parser.fromJson(webResult, new TypeToken<List<Person>>(){}.getType());
-
-        } catch (IOException e) {
-            result = null;
-            Log.w(getClass().getName(), "Exception calling service", e);
-        }
-
-        return result;
+           return webResult;
     }
 }
