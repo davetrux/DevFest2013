@@ -18,13 +18,19 @@ import com.devfest.serviceconsumer.task.AsyncWorker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Main extends Activity {
 
     private Button _serviceButton;
     private Button _asyncButton;
     private ListView _personList;
+    private ArrayList<Person> _data;
+
+    @Override
+   	public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelableArrayList("PersonData", _data);
+    }
 
     @Override
     protected void onPause() {
@@ -40,6 +46,11 @@ public class Main extends Activity {
         LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, filter);
     }
 
+    private void BindPersonList() {
+        PersonAdapter adapter = new PersonAdapter(Main.this, _data);
+        _personList.setAdapter(adapter);
+    }
+
     private BroadcastReceiver onNotice = new BroadcastReceiver() {
 
         @Override
@@ -48,9 +59,9 @@ public class Main extends Activity {
             if (serviceResult == RESULT_OK) {
                 String json = intent.getStringExtra("personlist");
                 Gson parser = new Gson();
-                List<Person> personList = parser.fromJson(json, new TypeToken<List<Person>>(){}.getType());
-                PersonAdapter adapter = new PersonAdapter(Main.this, personList);
-                _personList.setAdapter(adapter);
+                _data = parser.fromJson(json, new TypeToken<ArrayList<Person>>(){}.getType());
+
+                BindPersonList();
 
             } else {
                 Toast.makeText(Main.this, "Rest call failed.", Toast.LENGTH_LONG).show();
@@ -91,5 +102,10 @@ public class Main extends Activity {
                 async.execute("http://devfestdetroit.appspot.com/api/name");
             }
         });
+
+        if(savedInstanceState != null && savedInstanceState.containsKey("PersonData")) {
+            _data = savedInstanceState.getParcelableArrayList("PersonData");
+            BindPersonList();
+        }
     }
 }
