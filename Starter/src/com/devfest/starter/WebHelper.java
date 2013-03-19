@@ -1,4 +1,4 @@
-package com.devfest.serviceconsumer;
+package com.devfest.starter;
 
 
 import org.apache.http.HttpResponse;

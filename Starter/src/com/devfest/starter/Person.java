@@ -1,4 +1,4 @@
-package com.devfest.serviceconsumer;
+package com.devfest.starter;
 
 public class Person {
 
