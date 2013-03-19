@@ -7,4 +7,4 @@ BadDroid is an example of how not to consume web services.
 
 ServiceConsumer is a completed example of the concepts from the talk.
 
-TemplateConsumer is a starter project with many of the parts already added.
+Starter is a template project with many of the parts already added as a starting point for our coding exercise.
