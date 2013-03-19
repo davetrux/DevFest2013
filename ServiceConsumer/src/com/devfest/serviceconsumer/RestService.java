@@ -18,22 +18,32 @@ public class RestService extends IntentService {
         super("RestService");
     }
 
+    /*
+     * Handle the incoming intent
+     */
     @Override
     protected void onHandleIntent(Intent intent) {
+
         int result = Activity.RESULT_CANCELED;
 
+        //Get the url from the intent
         Uri data = intent.getData();
         String url = data.getScheme() + "://" + data.getHost() + data.getPath();
 
+        //Fetch the data
         String people = getJson(url);
 
         if(!people.equalsIgnoreCase("")) {
             result = Activity.RESULT_OK;
         }
 
+        //Send back the results
         sendResult(result, people);
     }
 
+    /*
+     * Place the results into an intent and return it to the caller
+     */
     private void sendResult(int result, String personJson) {
 
         Intent sendBack = new Intent(ACTION);
@@ -41,9 +51,13 @@ public class RestService extends IntentService {
         sendBack.putExtra("result", result);
         sendBack.putExtra("personlist", personJson);
 
+        //Keep the intent local to the application
         LocalBroadcastManager.getInstance(this).sendBroadcast(sendBack);
     }
 
+    /*
+     * Get the JSON results from the web service
+     */
     private String getJson(String url) {
         WebHelper http = new WebHelper();
            String webResult;

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class PersonAdapter extends ArrayAdapter<Person> {
+
     private final Context mContext;
     private final List<Person> values;
 
@@ -25,16 +26,23 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         return values.size();
     }
 
+    /*
+     * Creates the row in the ListView
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //Generate the row from a layout
         View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
+
         TextView textView = (TextView) rowView.findViewById(R.id.name);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
+        //Get the data
         Person s = values.get(position);
 
+        //Place the data in the views
         textView.setText(s.getFirstName() + " " + s.getLastName());
 
         if (s.getGender().equalsIgnoreCase("m")) {

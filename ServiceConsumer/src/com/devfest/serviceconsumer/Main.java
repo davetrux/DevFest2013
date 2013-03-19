@@ -25,17 +25,26 @@ public class Main extends Activity {
     private ListView mPersonList;
     private ArrayList<Person> _data;
 
+    /*
+     * Persist the list data during rotations
+     */
     @Override
    	public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putParcelableArrayList("PersonData", _data);
     }
 
+    /*
+     * Unhook the BroadcastManager that is listening for service returns before rotation
+     */
     @Override
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(onNotice);
     }
 
+    /*
+     * Re-hookup the BroadcastManager to listen to service returns after rotation
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -44,11 +53,17 @@ public class Main extends Activity {
         LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, filter);
     }
 
+    /*
+     * Helper method to put the list of persons into the ListView
+     */
     private void BindPersonList() {
         PersonAdapter adapter = new PersonAdapter(Main.this, _data);
         mPersonList.setAdapter(adapter);
     }
 
+    /*
+     * The listener that responds to intents sent back from the service
+     */
     private BroadcastReceiver onNotice = new BroadcastReceiver() {
 
         @Override
@@ -87,6 +102,7 @@ public class Main extends Activity {
                 if (mPersonList.getCount() > 0) {
                     mPersonList.setAdapter(null);
                 }
+                //Send an intent to the service to get data
                 Intent intent = new Intent(Main.this, RestService.class);
                 intent.setData(Uri.parse("http://devfestdetroit.appspot.com/api/names/10"));
                 startService(intent);
@@ -101,6 +117,7 @@ public class Main extends Activity {
             }
         });
 
+        //Put back the person data if it was persisted due to rotation
         if(savedInstanceState != null && savedInstanceState.containsKey("PersonData")) {
             _data = savedInstanceState.getParcelableArrayList("PersonData");
             BindPersonList();

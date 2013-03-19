@@ -16,10 +16,17 @@ public class Person implements Parcelable {
     @SerializedName("gender")
     private String mGender;
 
+
+    /*
+     * Default constructor for general object creation
+     */
     public Person() {
 
     }
 
+    /*
+     * Constructor needed for parcelable object creation
+     */
     public Person(Parcel item) {
         mFirstName = item.readString();
         mLastName = item.readString();
@@ -50,6 +57,9 @@ public class Person implements Parcelable {
         this.mGender = gender;
     }
 
+    /*
+     * Used to generate parcelable classes from a parcel
+     */
     public static final Parcelable.Creator<Person> CREATOR
             = new Parcelable.Creator<Person>() {
         public Person createFromParcel(Parcel in) {
@@ -61,11 +71,17 @@ public class Person implements Parcelable {
         }
     };
 
+    /*
+     * Needed to implement parcelable
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /*
+     * Place the data into the parcel
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(mFirstName);
