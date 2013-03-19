@@ -1,6 +1,5 @@
 package com.devfest.example;
 
-import android.os.NetworkOnMainThreadException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
