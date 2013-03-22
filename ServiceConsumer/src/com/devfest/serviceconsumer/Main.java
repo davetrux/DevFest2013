@@ -102,10 +102,17 @@ public class Main extends Activity {
                 if (mPersonList.getCount() > 0) {
                     mPersonList.setAdapter(null);
                 }
-                //Send an intent to the service to get data
-                Intent intent = new Intent(Main.this, RestService.class);
-                intent.setData(Uri.parse("http://devfestdetroit.appspot.com/api/names/10"));
-                startService(intent);
+
+                //Check to see if we can connect
+                if(WebHelper.isOnline(getApplicationContext())) {
+                    //Send an intent to the service to get data
+                    Intent intent = new Intent(Main.this, RestService.class);
+                    intent.setData(Uri.parse("http://devfestdetroit.appspot.com/api/names/10"));
+                    startService(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Not currently online", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

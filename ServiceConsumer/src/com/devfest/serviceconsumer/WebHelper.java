@@ -1,6 +1,9 @@
 package com.devfest.serviceconsumer;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.AbstractHttpClient;
@@ -12,6 +15,13 @@ import java.io.InputStream;
 
 public class WebHelper {
     AbstractHttpClient mClient = new DefaultHttpClient();
+
+    public static boolean isOnline(Context ctx){
+        ConnectivityManager manager =  (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+        return info != null && info.isConnected();
+    }
+
 
     public String getHttp(String url) throws IOException {
 
