@@ -1,11 +1,16 @@
 package com.devfest.starter;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Person {
 
+    @SerializedName("firstName")
     private String mFirstName;
-    
+
+    @SerializedName("lastName")
     private String mLastName;
 
+    @SerializedName("gender")
     private String mGender;
 
 
