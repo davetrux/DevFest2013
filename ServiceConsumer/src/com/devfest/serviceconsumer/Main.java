@@ -23,14 +23,14 @@ public class Main extends Activity {
     private Button mServiceButton;
     private Button mAsyncButton;
     private ListView mPersonList;
-    private ArrayList<Person> _data;
+    private ArrayList<Person> mData;
 
     /*
      * Persist the list data during rotations
      */
     @Override
    	public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putParcelableArrayList("PersonData", _data);
+        savedInstanceState.putParcelableArrayList("PersonData", mData);
     }
 
     /*
@@ -43,7 +43,7 @@ public class Main extends Activity {
     }
 
     /*
-     * Re-hookup the BroadcastManager to listen to service returns after rotation
+     * Hookup the BroadcastManager to listen to service returns
      */
     @Override
     protected void onResume() {
@@ -57,7 +57,7 @@ public class Main extends Activity {
      * Helper method to put the list of persons into the ListView
      */
     private void BindPersonList() {
-        PersonAdapter adapter = new PersonAdapter(Main.this, _data);
+        PersonAdapter adapter = new PersonAdapter(Main.this, mData);
         mPersonList.setAdapter(adapter);
     }
 
@@ -72,7 +72,7 @@ public class Main extends Activity {
             if (serviceResult == RESULT_OK) {
                 String json = intent.getStringExtra("personlist");
                 Gson parser = new Gson();
-                _data = parser.fromJson(json, new TypeToken<ArrayList<Person>>(){}.getType());
+                mData = parser.fromJson(json, new TypeToken<ArrayList<Person>>(){}.getType());
 
                 BindPersonList();
 
@@ -126,7 +126,7 @@ public class Main extends Activity {
 
         //Put back the person data if it was persisted due to rotation
         if(savedInstanceState != null && savedInstanceState.containsKey("PersonData")) {
-            _data = savedInstanceState.getParcelableArrayList("PersonData");
+            mData = savedInstanceState.getParcelableArrayList("PersonData");
             BindPersonList();
         }
     }
